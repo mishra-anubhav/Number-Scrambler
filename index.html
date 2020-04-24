@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Number Scrambler || 2020</title>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+</head>
+<style>
+    table,tr {
+        margin:0 auto;
+        border-collapse: collapse;
+        border-radius: 10px;   
+         }
+    td{
+    background: #673AB7;
+    color:white;
+    background: -webkit-linear-gradient(to right, #512DA8, #673AB7);
+    background: linear-gradient(to right, #512DA8, #673AB7); 
+    border-radius: 10px;
+    width:90px;
+    height: 80px;
+    margin:2px;
+    padding-top:20px;
+    display: inline-block;
+    font-size: 48px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    }
+    .box44{
+    background:white;
+    color: #673AB7;
+    font-size: 65px;
+    font-weight: 500;    
+    }
+    .box11:before{content:"1"}
+    .box12:before{content:"2"}
+    .box13:before{content:"3"}
+    .box14:before{content:"4"}
+    .box21:before{content:"5"}
+    .box22:before{content:"6"}
+    .box23:before{content:"7"}
+    .box24:before{content:"8"}
+    .box31:before{content:"9"}
+    .box32:before{content:"10"}
+    .box33:before{content:"11"}
+    .box34:before{content:"12"}
+    .box41:before{content:"13"}
+    .box42:before{content:"14"}
+    .box43:before{content:"15"}
+    .box44:before{content:"Φ"}
+</style>
+<body style="text-align: center;">
+    <audio id="myAudio">
+        <source src="./shuffling-cards-1.wav" type="audio/wav">
+        Your browser does not support the audio element.
+        </audio>
+    <h1> Number Scramber || 2020 Edition</h1><br>
+        <table style="width:400px; height: 400px" class="box">
+            <tr>
+                 <td id="tile11"class="box11" onClick="clickTile(1,1);"></td>
+                 <td id="tile12"class="box12" onClick="clickTile(1,2);"></td>
+                 <td id="tile13"class="box13" onClick="clickTile(1,3);"></td>
+                 <td id="tile14"class="box14" onClick="clickTile(1,4);"></td>
+            </tr>
+            <tr>
+                <td id="tile21"class="box21" onClick="clickTile(2,1);"></td>
+                <td id="tile22"class="box22" onClick="clickTile(2,2);"></td>
+                <td id="tile23"class="box23" onClick="clickTile(2,3);" ></td>
+                <td id="tile24"class="box24" onClick="clickTile(2,4);"></td>
+            </tr>
+            <tr>
+                <td id="tile31"class="box31" onClick="clickTile(3,1);"></td>
+                <td id="tile32"class="box32" onClick="clickTile(3,2);"></td>
+                <td id="tile33"class="box33" onClick="clickTile(3,3);"></td>
+                <td id="tile34"class="box34" onClick="clickTile(3,4);"></td>
+            </tr>
+            <tr>
+                <td id="tile41"class="box41" onClick="clickTile(4,1);"></td>
+                <td id="tile42"class="box42" onClick="clickTile(4,2);"></td>
+                <td id="tile43"class="box43" onClick="clickTile(4,3);"></td>
+                <td id="tile44"class="box44" onClick="clickTile(4,4);"></td>
+            </tr>
+        </table>
+        <button onClick="shuffle()">New Game</button>
+     </body>
+<script>
+  function swapTiles(cell1,cell2) {
+  var temp = document.getElementById(cell1).className;
+  document.getElementById(cell1).className = document.getElementById(cell2).className;
+  document.getElementById(cell2).className = temp;
+}
+var x = document.getElementById("myAudio"); 
+function shuffle() {
+  x.play(); 
+for (var row=1;row<=4;row++) { 
+   for (var column=1;column<=4;column++) {
+  
+    var row2=Math.floor(Math.random()*4 + 1);
+    var column2=Math.floor(Math.random()*4 + 1); 
+     
+    swapTiles("tile"+row+column,"tile"+row2+column2); 
+  }  
+} 
+}
+function clickTile(row,column) {
+  var cell = document.getElementById("tile"+row+column);
+  var tile = cell.className;
+  if (tile!="box44") { 
+       if (column<4) {
+         if ( document.getElementById("tile"+row+(column+1)).className=="box44") {
+           swapTiles("tile"+row+column,"tile"+row+(column+1));
+           return;
+         }
+       }
+      if (column>1) {
+         if ( document.getElementById("tile"+row+(column-1)).className=="box44") {
+           swapTiles("tile"+row+column,"tile"+row+(column-1));
+           return;
+         }
+       }
+      if (row>1) {
+         if ( document.getElementById("tile"+(row-1)+column).className=="box44") {
+           swapTiles("tile"+row+column,"tile"+(row-1)+column);
+           return;
+         }
+       }
+       if (row<4) {
+         if ( document.getElementById("tile"+(row+1)+column).className=="box44") {
+           swapTiles("tile"+row+column,"tile"+(row+1)+column);
+           return;
+         }
+       } 
+  }  
+}
+    </script>
+</html>
