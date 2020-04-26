@@ -1,24 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Number Scrambler || 2020</title>
+<title> Scrambler || 80's</title>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 </head>
 <style>
-    table,tr {
+@import url('https://fonts.googleapis.com/css?family=Black+Ops+One|Press+Start+2P&display=swap');
+  
+/* The Modal (background) */
+.modal {
+  font-family: 'Press Start 2P', cursive;
+  display: none; 
+  position: fixed;
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  overflow: hidden;
+  background-image:url("mainpage.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: 50px auto;
+  padding: 50px 25px;
+  border: 1px solid #888;
+  border-radius: 25px;
+  width: 45%;
+  height: 70%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  opacity: 0.6;
+}
+    table {
+      font-family: 'Black Ops One', cursive;
         margin:0 auto;
         border-collapse: collapse;
-        border-radius: 10px;   
+        border:10px solid rgba(0, 0, 0, 0.801);
+        border-radius: 1em;   
+        /* overflow: hidden; */
          }
     td{
     background: #673AB7;
     color:white;
     background: -webkit-linear-gradient(to right, #512DA8, #673AB7);
     background: linear-gradient(to right, #512DA8, #673AB7); 
-    border-radius: 10px;
+    border-radius: 0px;
     width:90px;
     height: 80px;
-    margin:2px;
+    margin:1px;
     padding-top:20px;
     display: inline-block;
     font-size: 48px;
@@ -29,7 +72,6 @@
     .box44{
     background:white;
     color: #673AB7;
-    font-size: 65px;
     font-weight: 500;    
     }
     .box11:before{content:"1"}
@@ -48,13 +90,58 @@
     .box42:before{content:"14"}
     .box43:before{content:"15"}
     .box44:before{content:"Φ"}
+h1{
+  font-family: 'Press Start 2P', cursive;
+
+}
+body{
+  text-align: center;
+  background-image:url("imageedit_7_6247859491.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.new_game{
+    padding:20px;
+    margin:20px;
+    background: #673AB7;
+    color:white;
+    border-radius: 25px;
+    outline:none;
+}
 </style>
-<body style="text-align: center;">
+<body >
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <h3> 🔥 Welcome to 80's Scrambler 🔥</h3><br>
+    <div style="text-align: left;"><h3 >🌟 Game's Rule :</h3>
+    <ul>
+      <li> Click on any block next to white block which you want to slide </li><br>
+      <li> Complete the game in given time to win. </li>
+    </ul><br>
+    
+    <h3>Select one to win  😉  <h3>
+      <div class="close" style="width: 150px; float:left; height:150px; background:gray; margin:10px;cursor: pointer;">
+       <img style="width: 150px; height:150px;" src="number.JPG">
+        </div>
+        <div style="width: 100px; float:left; height:100px; background:yellow; margin:10px">
+        Second DIV
+        </div>
+      <br>
+  </div>
+</div>
+</div>
     <audio id="myAudio">
         <source src="./shuffling-cards-1.wav" type="audio/wav">
         Your browser does not support the audio element.
         </audio>
-    <h1> Number Scramber || 2020 Edition</h1><br>
+    <h1> Number Scramber || 80's Edition</h1><br>
+    <div style="width: 20%; float:left; height:100%; margin:10px">
+      <!-- <img style="width: 150px; height:150px;" src="number.JPG"> -->
+       </div>
+       <div style="width:50%; float:left; height:100; margin:10px">
+ 
         <table style="width:400px; height: 400px" class="box">
             <tr>
                  <td id="tile11"class="box11" onClick="clickTile(1,1);"></td>
@@ -81,13 +168,57 @@
                 <td id="tile44"class="box44" onClick="clickTile(4,4);"></td>
             </tr>
         </table>
-        <button onClick="shuffle()">New Game</button>
+        <button class="new_game" style="cursor: pointer;" onClick="shuffle()">New Game</button>
+        
+        <button class="new_game" style="cursor: pointer;" onClick="modal()">Play Other Game</button>
+      </div>
+      <div style="width: 20%; float:left; height:100%; margin:10px;">
+        <h1 id="hms">00:10:10</h1>
+      <br>
+    </div>
      </body>
 <script>
+  //Modal menu
+  document.addEventListener('DOMContentLoaded', function() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+    modal.style.display = "none";
+    shuffle();
+    }
+}, false);
+
+function modal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+    modal.style.display = "none";
+    shuffle();
+    }
+}
+//Timer_countdown
+var timeoutHandle;
+    function count() {
+ 
+    var startTime = document.getElementById('hms').innerHTML;
+    var pieces = startTime.split(":");
+    var time = new Date();    time.setHours(pieces[0]);
+    time.setMinutes(pieces[1]);
+    time.setSeconds(pieces[2]);
+    var timedif = new Date(time.valueOf() - 1000);
+    var newtime = timedif.toTimeString().split(" ")[0];
+    document.getElementById('hms').innerHTML=newtime;
+    timeoutHandle=setTimeout(count, 1000);
+}
+count();
+
   function swapTiles(cell1,cell2) {
   var temp = document.getElementById(cell1).className;
   document.getElementById(cell1).className = document.getElementById(cell2).className;
   document.getElementById(cell2).className = temp;
+  check();
 }
 var x = document.getElementById("myAudio"); 
 function shuffle() {
@@ -95,8 +226,8 @@ function shuffle() {
 for (var row=1;row<=4;row++) { 
    for (var column=1;column<=4;column++) {
   
-    var row2=Math.floor(Math.random()*4 + 1);
-    var column2=Math.floor(Math.random()*4 + 1); 
+    // // var row2=Math.floor(Math.random()*4 + 1);
+    // // var column2=Math.floor(Math.random()*4 + 1); 
      
     swapTiles("tile"+row+column,"tile"+row2+column2); 
   }  
@@ -131,6 +262,13 @@ function clickTile(row,column) {
          }
        } 
   }  
+}
+function check(){
+if (document.getElementById("tile11").className=="box11" && document.getElementById("tile12").className=="box12" && document.getElementById("tile13").className=="box13" && document.getElementById("tile14").className=="box14"&& document.getElementById("tile21").className=="box21" && document.getElementById("tile22").className=="box22"&& document.getElementById("tile23").className=="box23" && document.getElementById("tile24").className=="box24" && document.getElementById("tile31").className=="box31"&& document.getElementById("tile32").className=="box32"&& document.getElementById("tile33").className=="box33"&& document.getElementById("tile34").className=="box34" && document.getElementById("tile41").className=="box41" && document.getElementById("tile42").className=="box42" && document.getElementById("tile43").className=="box43" && document.getElementById("tile44").className=="box44") {
+  window.alert("YOU WON");
+  
+}
+
 }
     </script>
 </html>
