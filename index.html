@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <title> Scrambler || 80's</title>
@@ -246,8 +246,8 @@ function shuffle() {
 for (var row=1;row<=4;row++) { 
    for (var column=1;column<=4;column++) {
   
-   //var row2=Math.floor(Math.random()*4 + 1);
-   //var column2=Math.floor(Math.random()*4 + 1); 
+   var row2=Math.floor(Math.random()*4 + 1);
+   var column2=Math.floor(Math.random()*4 + 1); 
      
     swapTiles("tile"+row+column,"tile"+row2+column2); 
   }  
