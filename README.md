@@ -1,3 +1,3 @@
 # Number-Scrambler
 
-    You can have demo here: at [Number-Scrambler](https://mishra-anubhav.github.io/Number-Scrambler/) 
+    You can have demo here: at <A href="https://mishra-anubhav.github.io/Number-Scrambler/"> Number-Scrambler </a>
